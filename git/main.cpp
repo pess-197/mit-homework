@@ -13,5 +13,8 @@ int fib(int n) {
 }
 
 int main() {
-	std::cout << fib(10) << std::endl;
+	int n;
+	std::cout << "Enter n: ";
+	std::cin >> n;
+	std::cout << fib(n) << std::endl;
 }
