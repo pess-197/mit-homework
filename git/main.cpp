@@ -1,20 +1,20 @@
 #include <iostream>
 
-int fib(int n) {
-	if (n == 1) {
-		return 0;
+void fib(int n) {
+	int* fibarr = new int[n];
+	fibarr[0] = 0;
+	fibarr[1] = 1;
+	std::cout << 0 << '\n' << 1 << '\n';
+	for (int i = 2; i < n; i++) {
+		fibarr[i] = fibarr[i-1]+fibarr[i-2];
+		std::cout << fibarr[i] << '\n';
 	}
-	if (n == 2) {
-		return 1;
-	}
-	if (n > 2) {
-		return fib(n-1)+fib(n-2);
-	}
+	delete[] fibarr;
 }
 
 int main() {
 	int n;
 	std::cout << "Enter n: ";
 	std::cin >> n;
-	std::cout << fib(n) << std::endl;
+	fib(n);
 }
