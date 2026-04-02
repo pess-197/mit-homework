@@ -13,5 +13,5 @@ int fib(int n) {
 }
 
 int main() {
-	std:cout << fib(10: << std::endl;
+	std::cout << fib(10) << std::endl;
 }
