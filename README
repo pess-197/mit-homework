@@ -1,0 +1,1 @@
+Never launch iloveonlycpp.sh outside of iloveonlycpp directory. It will delete all your non-cpp/hpp files if you do so.
