@@ -14,7 +14,7 @@ void fib(int n) {
 
 int main() {
 	int n;
-	std::cout << "Enter n: ";
+	std::cout << "Enter N: ";
 	std::cin >> n;
 	fib(n);
 	std::cout << "hello world again";
