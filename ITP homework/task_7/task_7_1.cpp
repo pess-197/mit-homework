@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 struct tree {
@@ -95,4 +97,31 @@ void del(tree*& tr, tree*& p) {
         p->val = nxt->val;
         del(tr,nxt);
     }
+
+}
+void xpath(tree*& tr, tree*& x) {
+    if (!tr || tr->val == x->val) {
+        cout << tr->val << ".";
+    }
+    else if (x->val >= tr->val) {
+        cout << tr->val << " ";
+        xpath(tr->right,x);
+    }
+    else {
+        cout << tr->val << " ";
+        xpath(tr->left,x);
+    }
+}
+
+int main() {
+    vector<int> vec = {5, 3, 7, 1, 9, 4, 2, 8, 6, 0};
+    tree* tr = NULL;
+    tree* tmp = NULL;
+    tree* val;
+    for (auto &i : vec) {
+        val = newtree(i);
+        insert(tr,tmp,val);
+    }
+    tree* x = find(tr,0);
+    xpath(tr,x);
 }
