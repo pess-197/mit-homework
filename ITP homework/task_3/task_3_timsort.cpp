@@ -18,7 +18,7 @@ void insertsort(vector<int>& vec) {
             }
             if (jj != i) {
                 tmp = vec[i];
-                vec.erase(find(vec.begin(), vec.end(), vec[i]));
+                vec.erase(vec.begin()+i);
                 vec.insert(vec.begin()+jj, tmp);
             }
         }
@@ -54,7 +54,6 @@ vector<int> timsort(vector<int> &vec) {
     vector<int> run;
     run.push_back(vec[0]);
     for (int i = 0; i < vec.size()-1; i++) {
-        cout << vec[i] << " " << vec[i+1] <<  endl;
         run.push_back(vec[i+1]);
         if (isAscending == 0) {
             if (vec[i] <= vec[i+1]) {
@@ -71,7 +70,7 @@ vector<int> timsort(vector<int> &vec) {
                     run.pop_back();
                 }
                 i++;
-                if (i < vec.size()) {
+                if (i+1 < vec.size()) {
                     run.push_back(vec[i+1]);
                 }
                 isAscending = 0;
@@ -85,7 +84,7 @@ vector<int> timsort(vector<int> &vec) {
                     run.pop_back();
                 }
                 i++;
-                if (i < vec.size()) {
+                if (i+1 < vec.size()) {
                     run.push_back(vec[i+1]);
                 }
                 isAscending = 0;
@@ -96,38 +95,30 @@ vector<int> timsort(vector<int> &vec) {
         runs.push_back(run);
     }
     insertsort(runs);
-    for (auto &i : runs) {
-        for (auto &j : i) {
-            cout << j << " ";
-        }
-        cout << endl;
-    }
     for (int i = 0; i < runs.size()-1; i++) {
         for (int j = 0; j < runs[i].size(); j++) {
             for (int k = 0; k < runs[i+1].size(); k++) {
-                if (runs[i][j] < runs[i+1][k] || k == runs[i+1].size()-1) {
+                if (runs[i][j] < runs[i+1][k]) {
                     if (k > 0) {
                         runs[i+1].insert(runs[i+1].begin()+k, runs[i][j]);
                     }
                     else  runs[i+1].insert(runs[i+1].begin(), runs[i][j]);
-                    for (auto &j : runs[i+1]) {
-                        cout << j << " ";
-                    }
-                    cout << endl;
+                    break;
+                }
+                if (k == runs[i+1].size()-1) {
+                    runs[i+1].insert(runs[i+1].begin()+k+1, runs[i][j]);
                     break;
                 }
             }
         }
     }
     return runs[runs.size()-1];
-}
+}   
 
 int main() {
-    vector<int> vec = {1, 3, 4,2 ,5, 3,52 , 0};
-    vector<int> vec2 = {5, 3,52};
-    insertsort(vec2);
-    timsort(vec);
-    for (auto &i : vec) {
+    vector<int> vec2 = {5, 3,52, 43, 2 ,1, 0 ,3, 7, 10,7,2,3,4,1,7,4,2,234,124};
+    vec2 = timsort(vec2);
+    for (auto &i : vec2) {
         cout << i << " ";
     }
 }
