@@ -133,6 +133,11 @@ void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	}
 }
 
+vector<vector<int>> l_Adj(int n, int m, vector<int> ribs) {
+    
+}
+
+
 int main() {
 	int n = 7;
 	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
