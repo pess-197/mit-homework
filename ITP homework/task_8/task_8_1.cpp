@@ -133,16 +133,34 @@ void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	}
 }
 
-vector<vector<int>> l_Adj(int n, int m, vector<int> ribs) {
-    
+vector<vector<int>> l_Adj(int n, vector<vector<int>> ribs, bool orient) {
+    vector<vector<int>> gr;
+    gr.resize(n);
+    for (int i = 0; i < ribs.size(); i++) {
+        if (ribs[i][0] > n || ribs[i][1] > n) {
+            continue;
+        }
+        else {
+            if (orient) gr[ribs[i][0]].push_back(ribs[i][1]);
+            else {
+                gr[ribs[i][0]].push_back(ribs[i][1]);
+                gr[ribs[i][1]].push_back(ribs[i][0]);
+            }
+        }
+    }
+	return gr;
 }
 
 
 int main() {
 	int n = 7;
 	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
-	vector<int> a(n, 0);
-	dfs(gr, a,0);
-	cout << '\n';
-	bfs(gr, a, 0);
+    vector<vector<int>> ribs = { {0,1}, {0,2}, {0,4},{0,5}, {1,3}, {2,5}, {4,6}, {5,6}};
+    gr= l_Adj(gr.size(), ribs, false);
+	for (int i =0; i<gr.size(); i++) {
+		for (auto &j : gr[i]) {
+			cout << j << " ";
+		}
+		cout << '\n';
+	}
 }
