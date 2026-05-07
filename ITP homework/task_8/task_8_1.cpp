@@ -154,13 +154,11 @@ vector<vector<int>> l_Adj(int n, vector<vector<int>> ribs, bool orient) {
 
 int main() {
 	int n = 7;
+	int m;
+	cout << "Enter m: ";
+	cin >> m;
 	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
     vector<vector<int>> ribs = { {0,1}, {0,2}, {0,4},{0,5}, {1,3}, {2,5}, {4,6}, {5,6}};
     gr= l_Adj(gr.size(), ribs, false);
-	for (int i =0; i<gr.size(); i++) {
-		for (auto &j : gr[i]) {
-			cout << j << " ";
-		}
-		cout << '\n';
-	}
+	cout << gr[m].size();
 }
