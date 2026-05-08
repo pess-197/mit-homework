@@ -150,3 +150,29 @@ vector<vector<int>> l_Adj(int n, vector<vector<int>> ribs, bool orient) {
     }
 	return gr;
 }
+
+int main() {
+	int a;
+	cout << "Enter a: ";
+	cin >> a;
+	int b;
+	cout << "Enter b: ";
+	cin >> b;
+	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
+    vector<vector<int>> ribs = { {0,1}, {0,2}, {0,4},{0,5}, {1,3}, {2,5}, {4,6}, {5,6}};
+    gr= l_Adj(gr.size(), ribs, true);
+	for (int i = 0; i <gr.size(); i++) {
+		for (auto &j : gr[i]) {
+			cout << j << " ";
+		}
+		cout << '\n';
+	}
+	gr[a].erase(find(gr[a].begin(), gr[a].end(), b));
+	cout << '\n';
+	for (int i = 0; i <gr.size(); i++) {
+		for (auto &j : gr[i]) {
+			cout << j << " ";
+		}
+		cout << '\n';
+	}
+}
