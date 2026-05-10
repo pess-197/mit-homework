@@ -1,9 +1,10 @@
 \documentclass[fleqn]{article}
 \usepackage[T2A]{fontenc}
-%\usepackage[cp1251]{inputenc}
+\usepackage[cp1251]{inputenc}
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage[12pt]{extsizes}
@@ -22,17 +23,19 @@
 Производя подстановку для одновременного применения обоих сдвигов, получим:
 \begin{equation}
 \begin{cases}
-A = 3\delta - b_s = -b - 3a\Delta +3\delta - 6\Delta^2, & \\[1ex]
-\ B = 3\delta^2 - 2b_s \delta + a_s c_s - 4d_s = \\
-= 3\delta^2 - 2(b + 3a\Delta + 6\Delta ^2)\delta + (a + 4\Delta) (c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3)- \\
-- 4(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4), \\
+A = 3\delta - b_s = -b - 3a\Delta +3\delta - 6\Delta^2, & \\
+B = 3\delta^2 - 2b_s \delta + a_s c_s - 4d_s = \\
+\quad = 3\delta^2 - 2(b + 3a\Delta + 6\Delta ^2)\delta + (a + 4\Delta) (c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3)- \\
+\qquad - 4(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4), \\
 C = \delta ^3 - b_s \delta ^2 + (a_s c_s - 4d_s )\delta  - a_s^2 d_s - c_s^2 + 4b_s d_s = \\
-= \delta ^3 - (b + 3a\Delta + 6\Delta ^2)\delta ^2 + ((a + 4\Delta )(c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3) - \\
-- 4(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4))\delta - (a + 4\Delta )^2 (d + c\Delta  + b\Delta ^2 + a\Delta ^3 + \Delta ^4) - \\
-- (c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3)^2 + 4(b + 3a\Delta + 6\Delta ^2)(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4).
+\quad = \delta ^3 - (b + 3a\Delta + 6\Delta ^2)\delta ^2 + ((a + 4\Delta )(c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3) - \\
+\qquad - 4(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4))\delta - (a + 4\Delta )^2 (d + c\Delta  + b\Delta ^2 + a\Delta ^3 + \Delta ^4) - \\
+\qquad - (c + 2b\Delta + 3a\Delta ^2 + 4\Delta ^3)^2 + 4(b + 3a\Delta + 6\Delta ^2)(d + c\Delta + b\Delta ^2 + a\Delta ^3 + \Delta ^4).
 \end{cases}
 \end{equation}
 
-Расчёты показывают, что когда &\delta  = \alpha a_s^2 + \beta b_s $, где $8\alpha + 3\beta  = 1$, коэффициенты резольвенты
-не меняются при любом сдвиге &x&.
+Расчёты показывают, что когда $\delta  = \alpha a_s^2 + \beta b_s $, где $8\alpha + 3\beta  = 1$, коэффициенты резольвенты
+не меняются при любом сдвиге $x$.
+
 \end{document}
+
