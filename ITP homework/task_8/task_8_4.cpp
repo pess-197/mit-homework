@@ -281,10 +281,22 @@ vector<vector<int>> l_Adj(int n, vector<vector<int>> ribs, bool orient) {
 }
 
 int main() {
-    int cnt = 0;
-	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
-    vector<vector<int>> ribs = { {0,1}, {0,2}, {0,4},{0,5}, {1,3}, {2,5}, {4,6}, {5,6}};
-    gr= l_Adj(gr.size(), ribs, false);
+    int n;
+	cout << "Enter n:";
+	cin >> n;
+	int nd;
+	int ndcnt = 0;
+	int prndcnt = n;
+	vector<vector<int>> gr;
+	gr.resize(n);
+	for (int i = 0; i < n; i++) {
+		cout << "Enter the number of adjacent nodes:";
+		cin >> ndcnt;
+		for (int j = 0; j <ndcnt; j++) {
+			cin >> nd;
+			gr[i].push_back(nd);
+		}
+	}
 	pr.resize(gr.size());
 	used.resize(gr.size());
 	for (int i = 0; i <gr.size(); i++) {
