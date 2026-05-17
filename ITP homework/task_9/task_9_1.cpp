@@ -238,13 +238,20 @@ int main() {
     int m = res.size() / 4;
     int h;
 	people x;
-	x.bd.dd = 1;
-	x.bd.mm = 1;
-	x.bd.yy = 2001;
-	x.exp = 5;
-	x.lastname = "Guigg";
-	x.position = "engineer";
-	x.wage = 18000;
+	cout << "Enter subject's birthday: ";
+	cin >> x.bd.dd;
+	cout << "Enter subject's birtmonth: ";
+	cin >> x.bd.mm;
+	cout << "Enter subject's birtyear: ";
+	cin >> x.bd.yy;
+	cout << "Enter subject's lastname: ";
+	cin >> x.lastname;
+	cout << "Enter subject's experience: ";
+	cin >> x.exp;
+	cout << "Enter subject's position: ";
+	cin >> x.position;
+	cout << "Enter subject's wage: ";
+	cin >> x.wage;
     vector<vector<list*>> hash = hashing(res);
 	for (auto &i : hash) {
 		print(i[0], i[1]);
@@ -256,6 +263,7 @@ int main() {
 		print(i[0], i[1]);
 		std::cout << endl;
 	}
+	cout << endl;
 	findd(hash,x,m);
 	delette(hash,x,m);
 	for (auto &i : hash) {
