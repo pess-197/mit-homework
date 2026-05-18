@@ -103,7 +103,7 @@ void dfs(vector<vector<int>> gr, vector<int> a, int x) {
 }
 void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	int ii;
-	a[0] = 1;
+	a[x] = 1;
 	cout << x << " ";
 	queue* h = NULL;
 	queue* t = NULL;

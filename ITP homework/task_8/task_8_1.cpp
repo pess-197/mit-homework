@@ -103,7 +103,7 @@ void dfs(vector<vector<int>> gr, vector<int> a, int x) {
 }
 void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	int ii;
-	a[0] = 1;
+	a[x] = 1;
 	cout << x << " ";
 	queue* h = NULL;
 	queue* t = NULL;
@@ -158,7 +158,7 @@ int main() {
 	cout << "Enter m: ";
 	cin >> m;
 	vector<vector<int>> gr = { {1,2,4,5}, {0,3},{0,5},{1},{0,6},{0,2,6}, {4,5} };
-    vector<vector<int>> ribs = { {0,1}, {0,2}, {0,4},{0,5}, {1,3}, {2,5}, {4,6}, {5,6}};
-    gr= l_Adj(gr.size(), ribs, false);
+    vector<vector<int>> ribs = { {0,1}, {0,2}, {1,3},{3,2}};
+    gr= l_Adj(4, ribs, false);
 	cout << gr[m].size();
 }

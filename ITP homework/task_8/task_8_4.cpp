@@ -232,7 +232,7 @@ void cycle_search(int x,vector<vector<int>> gr) {
 
 void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	int ii;
-	a[0] = 1;
+	a[x] = 1;
 	cout << x << " ";
 	queue* h = NULL;
 	queue* t = NULL;
@@ -290,7 +290,7 @@ int main() {
 	vector<vector<int>> gr;
 	gr.resize(n);
 	for (int i = 0; i < n; i++) {
-		cout << "Enter the number of adjacent nodes:";
+		cout << i << " --- Enter the number of adjacent nodes:";
 		cin >> ndcnt;
 		for (int j = 0; j <ndcnt; j++) {
 			cin >> nd;
