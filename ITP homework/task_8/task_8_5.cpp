@@ -98,7 +98,7 @@ vector<vector<int>> l_AdjT(int n, vector<vector<int>> ribs) {
 	return gr;
 }
 
-void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x) {
+void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,bool isT) {
 	int ii;
     int xx = x;
     int count = 1;
@@ -126,13 +126,13 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x)
 		else pop(h);
 	}
     cout << '\n';
-    if (count == gr.size()) {
+    if (count == gr.size() && isT == false) {
         system("cls");
         vector<vector<int>> grT = l_AdjT(gr.size(), ribs);
         for (int i = 0; i <a.size(); i++) {
             a[i] = 0;
         }
-        dfs(grT, ribs, a, xx);
+        dfs(grT, ribs, a, xx,true);
     }
     else {
         bool fl2 = false;
@@ -145,7 +145,7 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x)
 	    }
 	    if (fl2 == true) {
 		    x = ii;
-		    dfs(gr, ribs, a, x);
+		    dfs(gr, ribs, a, x,false);
 	    }
     }
 }
@@ -153,7 +153,7 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x)
 
 void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	int ii;
-	a[0] = 1;
+	a[x] = 1;
 	cout << x << " ";
 	queue* h = NULL;
 	queue* t = NULL;
@@ -161,7 +161,6 @@ void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 	while (h) {
 		x = pop(h, t);
 		for (int i = 0; i < gr[x].size(); i++) {
-			cout << "/" << a[gr[x][i]] << "/ ";
 			if (a[gr[x][i]] == 0) {
 				a[gr[x][i]] = 1;
 				push(h, t, gr[x][i]);
@@ -186,9 +185,31 @@ void bfs(vector<vector<int>> gr, vector<int> a, int x) {
 
 
 int main() {
-    int cnt = 0;
-    vector<vector<int>> ribs = { {0,1}, {1,2}, {1,5}, {1,4}, {2,3}, {3,2}, {3,7}, {7,3}, {7,6}, {5,6}, {6,5}, {4,5}, {4,0}};
-    vector<int> a(8,0);
-    vector<vector<int>> gr= l_Adj(8, ribs, false);
-    dfs(gr,ribs,a,0);
+    int n;
+	cout << "Enter n:";
+	cin >> n;
+	int nd;
+	int ndcnt = 0;
+	int prndcnt = n;
+	vector<vector<int>> gr;
+	gr.resize(n);
+	vector<vector<int>> ribs;
+	vector<int> tmp = {0, 0};
+	cout << '\n';
+	for (int i = 0; i < n; i++) {
+		cout << i <<  " --- Enter the number of adjacent nodes:";
+		cin >> ndcnt;
+		for (int j = 0; j <ndcnt; j++) {
+			cin >> nd;
+			gr[i].push_back(nd);
+			tmp[0]=i;
+			tmp[1]=nd;
+			ribs.push_back(tmp);
+		}
+	}
+    //vector<vector<int>> ribs = { {0,1}, {1,2}, {1,5}, {1,4}, {2,3}, {3,2}, {3,7}, {7,3}, {7,6}, {5,6}, {6,5}, {4,5}, {4,0}};
+    vector<int> a(gr.size(),0);
+    //gr= l_Adj(gr., ribs, true);
+    //dfs(gr,ribs,a,5,false);
+	bfs(gr,a,5);
 }
