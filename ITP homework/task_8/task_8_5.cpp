@@ -210,6 +210,9 @@ int main() {
     //vector<vector<int>> ribs = { {0,1}, {1,2}, {1,5}, {1,4}, {2,3}, {3,2}, {3,7}, {7,3}, {7,6}, {5,6}, {6,5}, {4,5}, {4,0}};
     vector<int> a(gr.size(),0);
     //gr= l_Adj(gr., ribs, true);
-    //dfs(gr,ribs,a,5,false);
-	bfs(gr,a,5);
+	int stnd;
+	cout << "Enter starting node: ";
+	cin >> stnd;
+    //dfs(gr,ribs,a,stnd,false);
+	bfs(gr,a,stnd);
 }
