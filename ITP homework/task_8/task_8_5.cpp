@@ -104,7 +104,7 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,
     int count = 1;
 	a[x] = 1;
 	bool fl = false;
-	cout << x << " ";
+	vector<int> res;
 	stack* h = NULL;
 	push(h, x);
 	while (h) {
@@ -119,23 +119,33 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,
 		}
 		if (fl == true) {
 			a[gr[x][ii]] = 1;
-			cout << gr[x][ii] << " ";
+			//cout << gr[x][ii] << " ";
+			res.push_back(gr[x][ii]);
             count++;
 			push(h, gr[x][ii]);
 		}
 		else pop(h);
 	}
-    cout << '\n';
     if (count == gr.size() && isT == false) {
-        system("cls");
         vector<vector<int>> grT = l_AdjT(gr.size(), ribs);
         for (int i = 0; i <a.size(); i++) {
             a[i] = 0;
         }
+		
         dfs(grT, ribs, a, xx,true);
     }
+	// if (count == 1) {
+	// 	system("cls");
+	// }
     else {
-        bool fl2 = false;
+		if (res.size() !=0) {
+			res.push_back(x);
+			for (auto &i: res) {
+				cout << i << " ";
+			}
+			cout << endl;
+		}
+		bool fl2 = false;
 	    for (int i = 0; i < a.size(); i++) {
 		    if (a[i] == 0) {
 			    fl2 = true;
@@ -213,6 +223,6 @@ int main() {
 	int stnd;
 	cout << "Enter starting node: ";
 	cin >> stnd;
-    //dfs(gr,ribs,a,stnd,false);
-	bfs(gr,a,stnd);
+    dfs(gr,ribs,a,stnd,false);
+	//bfs(gr,a,stnd);
 }
