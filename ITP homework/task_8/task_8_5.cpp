@@ -103,30 +103,44 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,
     int xx = x;
     int count = 1;
 	a[x] = 1;
-	bool fl = false;
+	int fl = 0;
 	vector<int> res;
+	//res.push_back(x);
 	stack* h = NULL;
 	push(h, x);
 	while (h) {
 		x = h->val;
-		fl = false;
+		fl = 0;
 		for (int i = 0; i < gr[x].size(); i++) {
+			//cout << i << " "<< x << " " << gr[x][i] << ", ";
 			if (a[gr[x][i]] == 0) {
-				fl = true;
+				//cout << x << " " << gr[x][i] << ", ";
+				fl =1;
 				ii = i;
 				break;
 			}
+			else  {
+				//cout << gr[x][i];
+				fl = 2;
+			}
 		}
-		if (fl == true) {
+		//cout << endl;
+		if (fl == 1) {
 			a[gr[x][ii]] = 1;
-			//cout << gr[x][ii] << " ";
+			//cout << gr[x][ii] << ", ";
 			res.push_back(gr[x][ii]);
             count++;
 			push(h, gr[x][ii]);
 		}
-		else pop(h);
+		else if (fl == 2) {
+			pop(h);
+		}
+		else break;
 	}
-    if (count == gr.size() && isT == false) {
+	if (fl == 0 && count > 1) {
+		dfs(gr,ribs,a,xx,false);
+	}
+    else if (count == gr.size() && isT == false) {
         vector<vector<int>> grT = l_AdjT(gr.size(), ribs);
         for (int i = 0; i <a.size(); i++) {
             a[i] = 0;
@@ -134,12 +148,9 @@ void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,
 		
         dfs(grT, ribs, a, xx,true);
     }
-	// if (count == 1) {
-	// 	system("cls");
-	// }
-    else {
+    else if (fl != 0) {
 		if (res.size() !=0) {
-			res.push_back(x);
+			res.push_back(xx);
 			for (auto &i: res) {
 				cout << i << " ";
 			}
