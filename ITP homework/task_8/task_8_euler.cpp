@@ -255,7 +255,7 @@ void euler_traverse(vector<vector<int>> gr) {
 }
 
 void insertsort(vector<vector<int>>& vec) {
-    if(vec[0].size() > vec[1].size()) {
+    if(vec[0][0] > vec[1][0]) {
         swap(vec[0], vec[1]);
     }
     if (vec.size() > 2) {
@@ -264,7 +264,7 @@ void insertsort(vector<vector<int>>& vec) {
         for (int i = 2; i < vec.size(); i++) {
             jj = i;
             for (int j = 0; j < i; j++) {
-                if (vec[i].size() < vec[j].size()) {
+                if (vec[i][0] < vec[j][0]) {
                     jj = j;
                     break;
                 }
@@ -275,6 +275,7 @@ void insertsort(vector<vector<int>>& vec) {
         }
     }
 }
+
 
 // int main() {
 //     int n;
