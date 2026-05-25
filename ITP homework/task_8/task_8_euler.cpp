@@ -276,26 +276,26 @@ void insertsort(vector<vector<int>>& vec) {
     }
 }
 
-int main() {
-    int n;
-	cout << "Enter q n:";
-	cin >> n;
-	int nd;
-	int ndcnt = 0;
-	int prndcnt = n;
-    bool isRib = false;
-	vector<vector<int>> gr;
-	gr.resize(n);
-	vector<vector<int>> ribs;
-	vector<int> tmp = {0, 0};
-	cout << '\n';
-	for (int i = 0; i < n; i++) {
-		cout << i <<  " --- Enter the number of adjacent nodes:";
-		cin >> ndcnt;
-		for (int j = 0; j <ndcnt; j++) {
-			cin >> nd;
-			gr[i].push_back(nd);
-		}
-	}
-    euler_traverse(gr);
-}
+// int main() {
+//     int n;
+// 	cout << "Enter q n:";
+// 	cin >> n;
+// 	int nd;
+// 	int ndcnt = 0;
+// 	int prndcnt = n;
+//     bool isRib = false;
+// 	vector<vector<int>> gr;
+// 	gr.resize(n);
+// 	vector<vector<int>> ribs;
+// 	vector<int> tmp = {0, 0};
+// 	cout << '\n';
+// 	for (int i = 0; i < n; i++) {
+// 		cout << i <<  " --- Enter the number of adjacent nodes:";
+// 		cin >> ndcnt;
+// 		for (int j = 0; j <ndcnt; j++) {
+// 			cin >> nd;
+// 			gr[i].push_back(nd);
+// 		}
+// 	}
+//     euler_traverse(gr);
+// }
