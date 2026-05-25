@@ -104,57 +104,57 @@ vector<vector<int>> l_AdjT(int n, vector<vector<int>> ribs) {
 	return gr;
 }
 
-void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,bool isT) {
-	int ii;
-    int xx = x;
-    int count = 1;
-	a[x] = 1;
-	bool fl = false;
-	cout << x << " ";
-	stack* h = NULL;
-	push(h, x);
-	while (h) {
-		x = h->val;
-		fl = false;
-		for (int i = 0; i < gr[x].size(); i++) {
-			if (a[gr[x][i]] == 0) {
-				fl = true;
-				ii = i;
-				break;
-			}
-		}
-		if (fl == true) {
-			a[gr[x][ii]] = 1;
-			cout << gr[x][ii] << " ";
-            count++;
-			push(h, gr[x][ii]);
-		}
-		else pop(h);
-	}
-    cout << '\n';
-    if (count == gr.size() && isT == false) {
-        system("cls");
-        vector<vector<int>> grT = l_AdjT(gr.size(), ribs);
-        for (int i = 0; i <a.size(); i++) {
-            a[i] = 0;
-        }
-        dfs(grT, ribs, a, xx,true);
-    }
-    else {
-        bool fl2 = false;
-	    for (int i = 0; i < a.size(); i++) {
-		    if (a[i] == 0) {
-			    fl2 = true;
-			    ii = i;
-			    break;
-		    }
-	    }
-	    if (fl2 == true) {
-		    x = ii;
-		    dfs(gr, ribs, a, x,false);
-	    }
-    }
-}
+// void dfs(vector<vector<int>> gr, vector<vector<int>> ribs, vector<int> a, int x,bool isT) {
+// 	int ii;
+//     int xx = x;
+//     int count = 1;
+// 	a[x] = 1;
+// 	bool fl = false;
+// 	cout << x << " ";
+// 	stack* h = NULL;
+// 	push(h, x);
+// 	while (h) {
+// 		x = h->val;
+// 		fl = false;
+// 		for (int i = 0; i < gr[x].size(); i++) {
+// 			if (a[gr[x][i]] == 0) {
+// 				fl = true;
+// 				ii = i;
+// 				break;
+// 			}
+// 		}
+// 		if (fl == true) {
+// 			a[gr[x][ii]] = 1;
+// 			cout << gr[x][ii] << " ";
+//             count++;
+// 			push(h, gr[x][ii]);
+// 		}
+// 		else pop(h);
+// 	}
+//     cout << '\n';
+//     if (count == gr.size() && isT == false) {
+//         system("cls");
+//         vector<vector<int>> grT = l_AdjT(gr.size(), ribs);
+//         for (int i = 0; i <a.size(); i++) {
+//             a[i] = 0;
+//         }
+//         dfs(grT, ribs, a, xx,true);
+//     }
+//     else {
+//         bool fl2 = false;
+// 	    for (int i = 0; i < a.size(); i++) {
+// 		    if (a[i] == 0) {
+// 			    fl2 = true;
+// 			    ii = i;
+// 			    break;
+// 		    }
+// 	    }
+// 	    if (fl2 == true) {
+// 		    x = ii;
+// 		    dfs(gr, ribs, a, x,false);
+// 	    }
+//     }
+// }
 
 
 void bfs(vector<vector<int>> gr, vector<int> a, int x) {
@@ -254,9 +254,31 @@ void euler_traverse(vector<vector<int>> gr) {
     }
 }
 
+void insertsort(vector<vector<int>>& vec) {
+    if(vec[0].size() > vec[1].size()) {
+        swap(vec[0], vec[1]);
+    }
+    if (vec.size() > 2) {
+        int jj;
+        vector<int> tmp;
+        for (int i = 2; i < vec.size(); i++) {
+            jj = i;
+            for (int j = 0; j < i; j++) {
+                if (vec[i].size() < vec[j].size()) {
+                    jj = j;
+                    break;
+                }
+            }
+            tmp = vec[i];
+            vec.erase(find(vec.begin(), vec.end(), vec[i]));
+            vec.insert(vec.begin()+jj, tmp);
+        }
+    }
+}
+
 int main() {
     int n;
-	cout << "Enter n:";
+	cout << "Enter q n:";
 	cin >> n;
 	int nd;
 	int ndcnt = 0;
