@@ -97,6 +97,21 @@ tree* sblng (tree* &x) {
     }
     else return NULL;
 }
+
+tree* min(tree* tr) {
+    if (!tr->left) {
+        return tr;
+    }
+    else return min(tr->left);
+}
+
+tree* max(tree* tr) {
+    if (!tr->right) {
+        return tr;
+    }
+    else return max(tr->right);
+}
+
 void insert_case_1(tree* &tr, tree* &x);
 void insert_case_2(tree* &tr, tree* &x);
 void insert_case_3(tree* &tr, tree* &x);
@@ -249,4 +264,69 @@ void insert(tree* &tr, tree* &pr, int x) {
             }
         }
     }
+}
+
+void replace(tree* &tr, tree* &x) {
+    if (x->left) {
+        tree* ch = x->left;
+        ch->parent = x->parent;
+        if (x->parent) {
+            if (x->parent->left == x) {
+                x->left = ch;
+            }
+            else x->right = ch;
+        }
+    }
+    else {
+        tree* ch = x->right;
+        ch->parent = x->parent;
+        if (x->parent) {
+            if (x->parent->right == x) {
+                x->right = ch;
+            }
+            else x->left = ch;
+        }
+    }
+}
+
+void del(tree* &tr, tree*&x) {
+    tree* tmp;
+    tree* t;
+    if (x->left && x->right) {
+        if (x->val <= tr->val) {
+            tmp = max(x);
+        }
+        else tmp = min(x);
+        t->val = x->val;
+        x->val = tmp->val;
+        tmp->val = t->val;
+        x = tmp;
+    }
+    if (x->left || x->right) {
+        if (x->left && !x->right) {
+            t= x->left;
+        }
+        if (x->right && !x->left) {
+            t= x->right;
+        }
+        replace(tr,x);
+        if (x->color == 'b') {
+            if (t->color == 'r') {
+                t->color = 'b';
+            }
+            else delete_case_1(tr,x);
+        }
+    }
+    else {
+        if (x->color == 'b') {
+            delete_case_1(tr,x);
+        }
+        else {
+            if (x->parent->left == x) {
+                x->parent->left = NULL;
+            }
+            else x->parent->right = NULL;
+        }
+    }
+    delete x;
 }
