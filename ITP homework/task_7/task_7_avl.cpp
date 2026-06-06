@@ -166,17 +166,33 @@ tree* max(tree* tr) {
 
 void insert(tree* &tr, tree* &pr, int x) {
     if (x < pr->val && pr->left == nil) {
+<<<<<<< HEAD
         pr->left = node(pr, x);
     }
     else if (x > pr->val && pr->right == nil) {
+=======
+        //cout << pr->val;
+        pr->left = node(pr, x);
+    }
+    else if (x > pr->val && pr->right == nil) {
+        //cout << pr->val;
+>>>>>>> culic
         pr->right = node(pr, x);
     }
     else {
         if (x < pr->val && pr->left != nil) {
+<<<<<<< HEAD
+=======
+            //cout << pr->val;
+>>>>>>> culic
             insert(tr, pr->left, x);
             return;
         }
         if (x > pr->val && pr->right != nil) {
+<<<<<<< HEAD
+=======
+            //cout << pr->val;
+>>>>>>> culic
             insert(tr, pr->right, x);
             return;
         }
