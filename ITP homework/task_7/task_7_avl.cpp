@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 struct tree{
@@ -54,7 +55,10 @@ tree* node(tree* &tr, int x) {
     return r;
 }
 
-tree* lturn(tree* &tr, tree* &x) {
+void preorder(tree* &tr);
+
+void lturn(tree* &tr, tree* x) {
+    if (x == nil) return;
     tree* y = x->right;
     x->right = y->left;
     if (y->left != nil) {               
@@ -64,7 +68,7 @@ tree* lturn(tree* &tr, tree* &x) {
     if (x->parent == nil) {
         tr = y;
     }
-    else if (x == x->parent->left) {
+    else if (x->parent->left == x) {
         x->parent->left = y;
     }
     else x->parent->right = y;
@@ -72,10 +76,10 @@ tree* lturn(tree* &tr, tree* &x) {
     x->parent = y;
     heighup(x);
     heighup(y);
-    return tr; 
 }
 
-tree* rturn(tree* &tr, tree* &x) {
+void rturn(tree* &tr, tree* x) {
+    if (x == nil) return;
     tree* y = x->left;
     x->left = y->right;
     if (y->right != nil) {               
@@ -93,22 +97,15 @@ tree* rturn(tree* &tr, tree* &x) {
     x->parent = y;
     heighup(x);
     heighup(y);
-    return tr; 
 }
 
-void preorder(tree* &tr);
 
 void balance(tree* &tr, tree* &x) {
     int bf = balance_fac(x);
-    if (bf > 1) { 
-        preorder(tr);
-        cout << endl;                       
+    if (bf > 1) {               
         if (balance_fac(x->left) < 0) {
-            preorder(tr);
-    cout << endl;
             lturn(tr, x->left);
         }
-        
         rturn(tr, x);
         
     }
@@ -162,48 +159,25 @@ tree* max(tree* tr) {
     else return max(tr->right);
 }
 
-
-
 void insert(tree* &tr, tree* &pr, int x) {
     if (x < pr->val && pr->left == nil) {
-<<<<<<< HEAD
         pr->left = node(pr, x);
     }
     else if (x > pr->val && pr->right == nil) {
-=======
-        //cout << pr->val;
-        pr->left = node(pr, x);
-    }
-    else if (x > pr->val && pr->right == nil) {
-        //cout << pr->val;
->>>>>>> culic
         pr->right = node(pr, x);
     }
     else {
         if (x < pr->val && pr->left != nil) {
-<<<<<<< HEAD
-=======
-            //cout << pr->val;
->>>>>>> culic
             insert(tr, pr->left, x);
-            return;
         }
-        if (x > pr->val && pr->right != nil) {
-<<<<<<< HEAD
-=======
-            //cout << pr->val;
->>>>>>> culic
+        else if (x > pr->val && pr->right != nil) {
             insert(tr, pr->right, x);
-            return;
         }
     }
-    preorder(tr);
-    cout << endl;
     heighup(pr);
-    balance(tr, pr);
+    heighup(tr);
+    balance(tr,pr);
 }
-
-// *** FIX 1: Changed v from reference to plain pointer ***
 void replace(tree* &tr, tree* u, tree* v) {
     if (u->parent == nil)
         tr = v;
@@ -229,7 +203,6 @@ void del(tree* &tr, tree*&x) {
     tree* y = x;
     tree* child;
     tree* fix_start = x->parent;
-
     if (x->left == nil) {
         child = x->right;
         replace(tr, x, x->right);
@@ -244,7 +217,6 @@ void del(tree* &tr, tree*&x) {
             fix_start = y;
         }
         else fix_start = y->parent;
-
         child = y->left;                   
         if (y->parent == x) {
             if (child != nil) child->parent = y;             
@@ -259,11 +231,8 @@ void del(tree* &tr, tree*&x) {
         y->right->parent = y;
         y->height = x->height;
     }
-
     delete x;
     x = nil;
-
-    // *** FIX 2: Call AVL rebalancing after deletion ***
     avl_delete(tr, fix_start);
 }
 
@@ -295,7 +264,6 @@ void del_odd(tree* &tr, tree* &x) {
 
 int main() {
     init_nil();
-       
     int n;
     cout << "enter n:";
     cin >> n;
@@ -305,8 +273,7 @@ int main() {
     tr = root(val);
     for (int i = 1; i < n; i++) {
         cin >> val;
-        insert(tr, tr, val);
-        
+        insert(tr,tr, val);
     }
     preorder(tr);
     cout << endl;
